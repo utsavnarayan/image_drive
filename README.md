@@ -7,3 +7,10 @@ It can register users and allows registered users to upload and view images(jpg,
 2.    It uses Django's built in authentication system
 3.    Contains views for signup, login, upload and view image
 4.    It is hostable on AWS micro
+
+
+## Cool things implemented:
+*  Twitter Bootstrap
+*  Multiple forms on same page
+*  Custom template for forms without the use of widgets (widget mixes views with models)
+*  SPA - single page architecture *without the use of any front-end framework* 
