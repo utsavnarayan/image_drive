@@ -27,7 +27,7 @@
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-.form-signin input[type="password"] {
+.form-signin input[type="password"], input[type="text"] {
   border-radius: 0;
   margin-bottom: -1px;
 }

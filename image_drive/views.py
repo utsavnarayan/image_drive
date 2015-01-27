@@ -4,58 +4,48 @@ from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.core.context_processors import csrf
 from django.template import Template, RequestContext
+from forms import MyRegistrationForm
 
 
 def index(request):
-    c = {}
-    c.update(csrf(request))
-    return render_to_response('index.html', c)
+    """""
+    Although this logic is little complex but
+    it keeps the login/logout/invalid-login views to the same url i.e '/'
+    """""
+    index_page = 'index.html'
+    if request.user.is_authenticated():
+        return render_to_response('home.html', context_instance=RequestContext(request))
+    form = MyRegistrationForm()
+    # Username and password submitted
+    if request.method == 'POST':
+        if 'Login' in request.POST:
+            username = request.POST.get('username', '')
+            password = request.POST.get('password', '')
 
+            if username and password:
+                user = auth.authenticate(username=username, password=password)
 
-def auth_view(request):
-    username = request.POST.get('username', '')
-    password = request.POST.get('password', '')
+                # Successfully logged in
+                if user is not None:
+                    auth.login(request, user)
+                    return render_to_response('home.html', context_instance=RequestContext(request))
 
-    user = auth.authenticate(username=username, password=password)
+                # Incorrect username password combination
+                else:
+                    return render_to_response('invalid_login.html', context_instance=RequestContext(request))
+        elif 'Signup' in request.POST:
+            form = MyRegistrationForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return render_to_response('register_success.html', context_instance=RequestContext(request))
 
-    if user is not None:
-        auth.login(request, user)
-        return HttpResponseRedirect('/accounts/loggedin')
-    else:
-        return HttpResponseRedirect('/accounts/invalid')
-
-
-def loggedin(request):
-    return render_to_response('index.html',
-                              {'full_name': request.user.username},
-                              context_instance=RequestContext(request))
-
-
-def invalid_login(request):
-    return render_to_response('index.html')
+    # Either Login button not clicked or username/password left blank
+    args = {}
+    args['form'] = form
+    args.update(csrf(request))
+    return render_to_response(index_page, args)
 
 
 def logout(request):
     auth.logout(request)
-    return render_to_response('index.html')
-
-
-def register_user(request):
-    if request.method == 'POST':
-        form = MyRegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/accounts/register_success')
-
-    else:
-        form = MyRegistrationForm()
-    args = {}
-    args.update(csrf(request))
-
-    args['form'] = form
-
-    return render_to_response('register.html', args)
-
-
-def register_success(request):
-    return render_to_response('register_success.html')
+    return HttpResponseRedirect('/')

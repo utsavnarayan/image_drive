@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Image Drive{% endblock %}
+
+{% block head %}
+{% load staticfiles %}
+<link href="{% static 'custom.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block header %}
+{% if form.errors %}
+<p class="error" xmlns="http://www.w3.org/1999/html">Sorry, that's not a valid username or password</p>
+{% endif %}
+{% if not user.is_authenticated %}
+<form action="/accounts/auth/" method="post" class="navbar-form navbar-right">
+    {% csrf_token %}
+    <div class="form-group">
+        <input type="text" name="username" value="" id="username" placeholder="Email address" class="form-control"
+               required autofocus>
+        <input type="password" name="password" value="" id="password" placeholder="Password" class="form-control"
+               required>
+
+    </div>
+    <input type="submit" value="Login" class="btn btn-success"/>
+</form>
+
+{% endif %}
+
+{% if user.is_authenticated %}
+<form action="/accounts/logout/" method="post" class="navbar-form navbar-right">
+    {% csrf_token %}
+    <div class="form-group">
+        <span class="greeting">Hi {{user.username}}</span>
+        <input type="submit" value="Logout" class="btn btn-success"/>
+    </div>
+
+</form>
+
+{% endif %}
+{% endblock %}
+
+{% block topcontent %}
+
+
+{% endblock %}

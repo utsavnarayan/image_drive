@@ -1,8 +1,5 @@
-{% extends "base.html" %}
+{% extends "index.html" %}
 
-{% block content %}
-
-  <h2>Your login details are invalid!</h2>
-  <p>Click <a href="/accounts/login/">here</a> to login again.</p>
-
+{% block invalid_login %}
+<span class="greeting-error">Invalid username or password</span>
 {% endblock %}
