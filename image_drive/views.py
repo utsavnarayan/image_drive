@@ -32,12 +32,12 @@ def loggedin(request):
 
 
 def invalid_login(request):
-    return render_to_response('invalid_login.html')
+    return render_to_response('index.html')
 
 
 def logout(request):
     auth.logout(request)
-    return render_to_response('logout.html')
+    return render_to_response('index.html')
 
 
 def register_user(request):
