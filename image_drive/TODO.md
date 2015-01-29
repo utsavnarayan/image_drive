@@ -8,3 +8,10 @@ Restrict uploads to images
 Improve UI of gallery
 
 Test csrf issues
+
+Implement better security on direct access to resources like images
+Implement sessions
+
+Implement serving of images as thumbnails - sorl
+
+Fix responsiveness of menu button
