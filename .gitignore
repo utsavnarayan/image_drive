@@ -1,27 +1,3 @@
-
-This repository
-
-    Explore
-    Gist
-    Blog
-    Help
-
-    Utsav Narayan Singh utsavnarayan
-
-    1 
-
-0
-
-    0
-
-utsavnarayan/open2study
-
-open2study/.gitignore
-Utsav Narayan Singh utsavnarayan 22 days ago
-Updated gitignore and included crawler code
-
-1 contributor
-56 lines (46 sloc) 0.686 kb
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -68,3 +44,6 @@ docs/_build/
 target/
 #PyCharm
 .idea/
+
+#Project specific
+image_drive/media
