@@ -37,15 +37,7 @@
     <form class="form-signin" action="/" method="post">
         {% csrf_token %}
         <h2 class="form-signin-heading">Sign up, its easy!</h2>
-        {% if form.errors %}
-        <div class="alert alert-warning" role="alert">
-            Please check:
-            {% for error in form.errors %}
-                {{error}},
-            {% endfor %}
-        </div>
-        {% endif %}
-        {% block register_success %}
+        {% block register_status %}
         {% endblock %}
         <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
         <input name="username" type="text" id="inputUsername" class="form-control" placeholder="Username" required>

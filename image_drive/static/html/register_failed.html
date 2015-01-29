@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+
+{% block register_status %}
+       {% if form.errors %}
+        <div class="alert alert-warning" role="alert">
+            Please check:
+            {% for error in form.errors %}
+                {{error}},
+            {% endfor %}
+        </div>
+        {% endif %}
+{% endblock %}
