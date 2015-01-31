@@ -1,17 +1,17 @@
-use badges for number of images uploaded/size remaining etc
-add option for images with labels/tags
-use alerts for showing your images are lacking tags
-useprogress bar for showing size/space remaining
-http://getbootstrap.com/css/#images-responsive
-
-Restrict uploads to images
-Improve UI of gallery
-
 Test csrf issues
 
 Implement better security on direct access to resources like images
+
 Implement sessions
 
 Implement serving of images as thumbnails - sorl
 
-Fix responsiveness of menu button
+Use badges for number of images uploaded/size remaining etc
+
+Add option for images with labels/tags
+
+Use alerts for showing your images are lacking tags
+
+Use progress bar for showing size/space remaining
+
+Improve UI of gallery

@@ -19,18 +19,23 @@
 {% endblock %}
 
 {% block topcontent %}
-    <form action="#" method="post" enctype="multipart/form-data">
-        {% csrf_token %} {{form}}
-        <input type="submit" value="Upload" name="Upload"/>
-    </form>
+<form action="#" method="post" enctype="multipart/form-data">
+    {% csrf_token %} {{form}}
+    <input type="submit" value="Upload" name="Upload"/>
+</form>
 {% endblock %}
 
 {% block maincontent %}
-        <div class="thumbnails">
-            {% for img in images %}
-            <a href="{{ img.pic.url }}" class="thumbnail col-md-3"><img src="{{ img.pic.url }}"
-                                                               alt="{{ img.pic.name }}"/>
-            </a>
-        {% endfor %}
+<div class="thumbnails">
+
+    {% for img in images %}
+    <div class="col-md-3 col-xs-6">
+        <a href="{{ img.pic.url }}" class="thumbnail"><img src="{{ img.pic.url }}"
+                                                                     alt="{{ img.pic.name }}"/>
+        </a>
+
     </div>
+    {% endfor %}
+
+</div>
 {% endblock %}
