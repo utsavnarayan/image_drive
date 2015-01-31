@@ -91,6 +91,15 @@ def download(request, image_key):
         return img(request, pk=image_key)
 
 
+def delete(request, image_key):
+    image = Upload.objects.all().filter(image_key=image_key, user=request.user.id)
+    if not image:
+        return _show_error(request, "Image not present")
+    else:
+        image.delete()
+        return HttpResponseRedirect('/')
+
+
 def _show_error(request, error_code):
     context = RequestContext(request, {
         'error_code': error_code,

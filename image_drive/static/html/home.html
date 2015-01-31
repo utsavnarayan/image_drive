@@ -8,6 +8,7 @@
 {% endblock %}
 
 {% block header %}
+
 <form action="/accounts/logout/" method="post" class="navbar-form navbar-right">
     {% csrf_token %}
     <div class="form-group">
@@ -30,11 +31,17 @@
 
     {% for img in images %}
     <div class="col-md-3 col-xs-6">
-        <a href="/download/{{ img.image_key }}" class="thumbnail"><img src="/download/{{ img.image_key }}"
-                                                                     alt="{{ img.image_key }}"/>
-        </a>
+        <div class="thumbnail">
+            <a href="/download/{{ img.image_key }}"><img src="/download/{{ img.image_key }}"
+                                                         alt="{{ img.image_key }}"/>
 
+            </a>
+             <div class="caption"><p>Date: {{ img.upload_date }}<br/>Size: {{ img.pic.size|filesizeformat }}</p>
+                <p><a href="/delete/{{ img.image_key }}" class="btn btn-primary" role="button">Delete</a></p>
+                </div>
+        </div>
     </div>
+
     {% endfor %}
 
 </div>
