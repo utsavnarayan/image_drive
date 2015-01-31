@@ -47,3 +47,4 @@ target/
 
 #Project specific
 image_drive/media
+image_drive/db.sqlite3

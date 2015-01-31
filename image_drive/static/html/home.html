@@ -30,8 +30,8 @@
 
     {% for img in images %}
     <div class="col-md-3 col-xs-6">
-        <a href="{{ img.pic.url }}" class="thumbnail"><img src="{{ img.pic.url }}"
-                                                                     alt="{{ img.pic.name }}"/>
+        <a href="/download/{{ img.image_key }}" class="thumbnail"><img src="/download/{{ img.image_key }}"
+                                                                     alt="{{ img.image_key }}"/>
         </a>
 
     </div>

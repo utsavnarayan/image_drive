@@ -13,6 +13,9 @@ urlpatterns = patterns('',
 
     # user auth urls
     url(r'^accounts/logout/$', 'image_drive.views.logout'),
+    url('^download/(?P<image_key>[A-Za-z0-9_-]+)/$', image_drive.views.download, name='download'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-
+handler403 = image_drive.views.show_error_403
+handler404 = image_drive.views.show_error_404
+handler500 = image_drive.views.show_error_500

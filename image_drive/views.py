@@ -1,3 +1,5 @@
+from gallery.models import Upload
+
 __author__ = 'utsav'
 from django.shortcuts import render_to_response, render
 from django.http import HttpResponseRedirect
@@ -77,3 +79,35 @@ def home(request):
         img = UploadForm()
     images = Upload.objects.all().filter(user=request.user)
     return render(request, 'home.html', {'form': img, 'images': images})
+
+
+def download(request, image_key):
+    image = Upload.objects.all().filter(image_key=image_key, user=request.user.id)
+    if not image:
+        return _show_error(request, "Image not present")
+    else:
+        from django_downloadview import ObjectDownloadView
+        img = ObjectDownloadView.as_view(model=Upload, file_field='pic', attachment=False)
+        return img(request, pk=image_key)
+
+
+def _show_error(request, error_code):
+    context = RequestContext(request, {
+        'error_code': error_code,
+    })
+    return render_to_response('error.html', context)
+
+
+def show_error_403(request):
+    return _show_error(request, 403)
+
+
+def show_error_404(request):
+    return _show_error(request, 404)
+
+
+def show_error_500(request):
+    return _show_error(request, 500)
+
+
+
