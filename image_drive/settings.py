@@ -87,7 +87,6 @@ TEMPLATE_DIRS = os.path.join(os.path.dirname(__file__), 'static/html'),
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/'),
-    os.path.join(BASE_DIR, 'static/'),
     '/var/www/static/',
 )
 
